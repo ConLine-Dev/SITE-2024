@@ -228,11 +228,11 @@ body:not(.dsn-cursor-effect) #dsn_cursor, body:not(.dsn-cursor-effect) #dsn_curs
 }
 
 .privacidade-link {
-  color: var(--red-color);
+  color: #FF0000;
 }
 
 .privacidade-link:hover {
-  border-bottom: 1px solid var(--red-color);
+  border-bottom: 1px solid #FF0000;
 }
 
 .box-button {
@@ -247,7 +247,7 @@ body:not(.dsn-cursor-effect) #dsn_cursor, body:not(.dsn-cursor-effect) #dsn_curs
 
 .box-button button {
   padding: 8px 15px;
-  background-color: var(--red-color);
+  background-color: #FF0000;
   color: var(--theme-color-font);
   border-radius: 0;
   font-weight: 700;
