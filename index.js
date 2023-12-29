@@ -1,35 +1,28 @@
 // Import packages
 const express = require('express');
-const http = require('http'); // Add this line
+const http = require('http');
 const path = require('path');
-
+const cors = require('cors');
 
 // Middlewares
 const app = express();
 
 app.use(express.json());
-
-
-// Create an HTTP server using the Express app
-const server = http.createServer(app); // Replace 'app' with your Express app instance
-
+app.use(cors()); // Use CORS na instância do Express
 
 // Import routes pages
 const listApp = require('./routes/app');
 const api = require('./routes/api');
 
-
-
 // Statics
 app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
-// app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')))
-
 
 // Routes
 app.use('/', listApp);
 app.use('/api', api);
 
-
+// Create an HTTP server using the Express app
+const server = http.createServer(app);
 
 // connection
 const port = process.env.PORT || 9001;
