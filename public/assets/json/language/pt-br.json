@@ -8,6 +8,20 @@
       "endereco-filial-2": "<h5 class='sm-title-block mb-10' style='font-weight: bold;'>Endereço - Filial de São Paulo</h5>R. São Vicente de Paulo, 95- Sala 24 conj 2<br> Santa Cecilia - São Paulo<br> São Paulo<br> Brasil",
       "contato": "Contato",
       "siga": "Siga-nos",
+      "navegacao": "NAVEGAÇÃO",
+      "inicio": "INÍCIO",
+      "politica": "POLÍTICA DE PRIVACIDADE",
+      "trabalhe-conosco": "TRABALHE CONOSCO",
+      "contato-2": "CONTATO",
+      "copyright": "Copyright© ConLine | Todos direitos reservados | 2024",
+      "endereco-2": "ENDEREÇO",
+      "bem-vindo": "Bem Vindo!",
+      "sobre-privacidade": "A CONLINE usa cookies para armazenar informações sobre como você usa o nosso site e APPs e as páginas que visita. Tudo para tornar sua experiência a mais agradável possível. Para entender os tipos de cookies que utilizamos, clique em <a class='privacidade-link' href='privacidade' target='_blank'>Termos de Uso e Política de Privacidade</a>. Ao clicar em 'Aceitar', você consente com a utilização de cookies e com os termos de uso e política de privacidade.",
+      "btn-aceitar": "ACEITAR",
+      "btn-termos": "TERMOS DE USO",
+
+
+
       "proximos": "PROXÍMOS",
       "limites": "DEIXAMOS OS LIMITES",
       "distantes": "DISTANTES",
@@ -34,16 +48,7 @@
       "depoimento-4": "Ótimo lugar para se trabalhar e de muito comprometimento com os clientes",
       "anos-comex": "ANOS DE <br>COMÉRCIO EXTERIOR",
       "parceria": "PARCERIA É O QUE <br><b><i>NOS</i></b> MOVE",
-      "navegacao": "NAVEGAÇÃO",
-      "inicio": "INÍCIO",
-      "politica": "POLÍTICA DE PRIVACIDADE",
-      "contato-2": "CONTATO",
-      "copyright": "Copyright© ConLine | Todos direitos reservados | 2024",
-      "endereco-2": "ENDEREÇO",
-      "bem-vindo": "Bem Vindo!",
-      "sobre-privacidade": "A CONLINE usa cookies para armazenar informações sobre como você usa o nosso site e APPs e as páginas que visita. Tudo para tornar sua experiência a mais agradável possível. Para entender os tipos de cookies que utilizamos, clique em <a class='privacidade-link' href='privacidade' target='_blank'>Termos de Uso e Política de Privacidade</a>. Ao clicar em 'Aceitar', você consente com a utilização de cookies e com os termos de uso e política de privacidade.",
-      "btn-aceitar": "ACEITAR",
-      "btn-termos": "TERMOS DE USO",
+
 
 
       "pri-title": "Política de Privacidade",
@@ -72,6 +77,22 @@
       "pri-accor-9": "Legislação e foro?",
       "pri-accor-desc-9": "Esta Política de Privacidade e a relação decorrente das ações aqui compreendidas, assim como qualquer disputa que surja em virtude disto será regulada exclusivamente pela legislação brasileira.",
       "pri-accor-10": "Gestão da política?",
-      "pri-accor-desc-10": "A Política de Privacidade é aprovada pela direção da ConLine."
+      "pri-accor-desc-10": "A Política de Privacidade é aprovada pela direção da ConLine.",
+
+      "tra-title": "Trabalhe Conosco",
+      "tra-erro-anexar": "Erro ao anexar o arquivo!",
+      "tra-selecione-arquivo": "Por favor, selecione um arquivo do tipo .doc, .docx ou .pdf.",
+      "tra-venha-fazer": "VENHA FAZER PARTE DA<br> NOSSA EQUIPE.",
+      "tra-faça-parte": "Faça parte do nosso time de talentos! Estamos em busca de profissionais dedicados e apaixonados. Junte-se a nós e faça a diferença em sua carreira.",
+      "tra-preencha": "PREENCHA O FORMULÁRIO ABAIXO <br>E ENVIE SEU CURRÍCULO",
+      "tra-todos-campos": "Preencha todos os campos abaixo",
+      "form_tra_name": "Escreva seu nome completo",
+      "form_tra_email": "Escreva seu email",
+      "form_tra_sobre_voce": "Conte-nos um pouco sobre você",
+      "tra-anexe": "Anexe seu currículo",
+      "tra-enviar": "ENVIE SUA MENSAGEM",
+      "tra-end-matriz": "ENDEREÇO MATRIZ",
+      "tra-telefone": "TELEFONE",
+      "tra-escreva-nos": "ESCREVA-NOS"
    }
 }

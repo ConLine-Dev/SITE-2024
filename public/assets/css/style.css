@@ -187,7 +187,7 @@ body:not(.dsn-cursor-effect) #dsn_cursor, body:not(.dsn-cursor-effect) #dsn_curs
 .arrow-scroll {
   z-index: 10;
   position: absolute;
-  bottom: 50px;
+  bottom: 10px;
   left: 50%;
   transform: translate(-50%);
   color: #FFF;
@@ -197,13 +197,13 @@ body:not(.dsn-cursor-effect) #dsn_cursor, body:not(.dsn-cursor-effect) #dsn_curs
 
 @keyframes jumping {
   0% {
-    bottom: 50px;
+    bottom: 10px;
   }
   50% {
-    bottom: 65px;
+    bottom: 25px;
   }
   100% {
-    bottom: 50px;
+    bottom: 10px;
   }
 }
 
@@ -2568,7 +2568,7 @@ a:hover, a:active {
 @media only screen and (min-width: 768px) {
   .dsn-section-padding .main-slider .control-nav {
     padding: 0;
-    width: calc(100% - (var(--dsn-gap-container) * 2));
+    width: calc(103% - (var(--dsn-gap-container) * 2));
   }
 }
 .main-slider .control-nav .swiper-notification {

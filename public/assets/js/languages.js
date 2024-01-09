@@ -50,11 +50,29 @@ function updateContent(translations) {
       for (const keyLang in translations[key]) {
          const data = document.querySelector(`[data-lang="${keyLang}"]`);
          if(data) {
-            data.innerHTML = translations[key][keyLang]
+            // Verifica se o elemento é um input
+            if (data.tagName.toLowerCase() === 'input') {
+               // Verifica se o tipo do input é submit
+               if (data.type.toLowerCase() === 'submit') {
+                  // Atualiza o value do input
+                  data.value = translations[key][keyLang];
+               } else {
+                  // Atualiza o placeholder do input
+                  data.placeholder = translations[key][keyLang];
+               }
+            } else if (data.tagName.toLowerCase() === 'textarea') {
+               // Atualiza o placeholder do textarea
+               data.placeholder = translations[key][keyLang];
+            } else {
+               // Atualiza o innerHTML para outros elementos
+               data.innerHTML = translations[key][keyLang];
+            }
          }
       }
    }
 }
+
+
 
 function changeLanguage() {
    const brasilFlag = document.querySelector('.brasil');
@@ -77,3 +95,28 @@ function changeLanguage() {
 function startPage() {
    loadTranslations(currentLanguage); // Carrega o idioma que esta no localStorage
 }
+
+
+
+function setLanguage(language) {
+   const htmlLang = document.documentElement;
+   htmlLang.setAttribute('lang', language)
+
+   localStorage.setItem('language', language);
+}
+
+window.addEventListener('load', function () {
+   // Carrega o idioma do localStorage
+   let currentLanguage = localStorage.getItem('language') || 'pt-br';
+   setLanguage(currentLanguage);
+
+   // Adicionar ouvindo de evento para o botao de troca de idioma
+   const languageButton = document.querySelector('.language');
+   if (languageButton) {
+      languageButton.addEventListener('click', function() {
+         // trocar idioma quando o botao for clicado
+         currentLanguage = (currentLanguage === 'en') ? 'pt-br' : 'en'
+         setLanguage(currentLanguage)
+      })
+   }
+})

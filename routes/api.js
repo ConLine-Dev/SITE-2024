@@ -3,7 +3,6 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const router = express.Router();
 const multer = require('multer');
-const axios = require('axios');
 
 // Multer é usado para anexar os arquivos
 const storage = multer.memoryStorage();
@@ -18,39 +17,35 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-// Adicione uma nova rota para validar o captcha
-router.post('/validate-captcha', async (req, res) => {
-    try {
-      const { captchaResponse } = req.body;
-  
-      // Faça uma requisição para verificar a validade do captcha no backend
-      const response = await axios.post('https://www.google.com/recaptcha/api/siteverify', {
-        secret: process.env.RECAPTCHA_SECRET_KEY,
-        response: captchaResponse,
-      });
-  
-      res.json(response.data);
-    } catch (error) {
-      res.status(500).json({ success: false, error: 'Erro ao validar o captcha.' });
-    }
-  });
-  
 
 // Rota para enviar e-mail
 router.post('/send-email', upload.single('file'), async (req, res) => {
-    try {
-        const { name, email, message } = req.body;
-        const attachment = req.file;
+    const { name, email, message } = req.body;
+    const attachment = req.file;
 
-        const mailOptions = {
-            from: 'TRABALHE CONOSCO <trabalhe-conosco@conlinebr.com.br>',
-            to: process.env.DESTINATION_EMAIL,
-            subject: `TRABALHE CONOSCO - CURRICULO DE ${name}`,
-            html: `
+    const params = new URLSearchParams ({
+        secret: process.env.RECAPTCHA_SECRET_KEY,
+        response: req.body['g-recaptcha-response'],
+        remoteip: req.ip
+    });
+
+    fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: "POST",
+        body: params,
+    })
+    .then(async response => response.json())
+    .then(async data => {
+        if (data.success) {
+            // Se sim, continue com o envio do email
+            const mailOptions = {
+                from: 'TRABALHE CONOSCO <trabalhe-conosco@conlinebr.com.br>',
+                to: process.env.DESTINATION_EMAIL,
+                subject: `TRABALHE CONOSCO - Currículo de ${name}`,
+                html: `
                 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
                 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
                 xmlns:o="urn:schemas-microsoft-com:office:office">
-
+    
                 <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,11 +56,11 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                     #outlook a {
                         padding: 0;
                     }
-
+    
                     .ExternalClass {
                         width: 100%;
                     }
-
+    
                     .ExternalClass,
                     .ExternalClass p,
                     .ExternalClass span,
@@ -74,17 +69,17 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                     .ExternalClass div {
                         line-height: 100%;
                     }
-
+    
                     table td {
                         border-collapse: collapse;
                         mso-line-height-rule: exactly;
                     }
-
+    
                     .editable.image {
                         font-size: 0 !important;
                         line-height: 0 !important;
                     }
-
+    
                     .nl2go_preheader {
                         display: none !important;
                         mso-hide: all !important;
@@ -93,7 +88,7 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                         line-height: 0px !important;
                         font-size: 0px !important;
                     }
-
+    
                     body {
                         width: 100% !important;
                         -webkit-text-size-adjust: 100%;
@@ -101,28 +96,28 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                         margin: 0;
                         padding: 0;
                     }
-
+    
                     img {
                         outline: none;
                         text-decoration: none;
                         -ms-interpolation-mode: bicubic;
                     }
-
+    
                     a img {
                         border: none;
                     }
-
+    
                     table {
                         border-collapse: collapse;
                         mso-table-lspace: 0pt;
                         mso-table-rspace: 0pt;
                     }
-
+    
                     th {
                         font-weight: normal;
                         text-align: left;
                     }
-
+    
                     *[class="gmail-fix"] {
                         display: none !important;
                     }
@@ -139,30 +134,30 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                         .gmx-killpill {
                             content: ' /03D1';
                         }
-
+    
                         .r0-o {
                             border-style: solid !important;
                             margin: 0 auto 0 auto !important;
                             width: 320px !important
                         }
-
+    
                         .r1-i {
                             background-color: #ffffff !important
                         }
-
+    
                         .r2-c {
                             box-sizing: border-box !important;
                             text-align: center !important;
                             valign: top !important;
                             width: 100% !important
                         }
-
+    
                         .r3-o {
                             border-style: solid !important;
                             margin: 0 auto 0 auto !important;
                             width: 100% !important
                         }
-
+    
                         .r4-i {
                             background-color: #ffffff !important;
                             padding-bottom: 20px !important;
@@ -170,49 +165,49 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                             padding-right: 15px !important;
                             padding-top: 20px !important
                         }
-
+    
                         .r5-c {
                             box-sizing: border-box !important;
                             display: block !important;
                             valign: top !important;
                             width: 100% !important
                         }
-
+    
                         .r6-o {
                             border-style: solid !important;
                             width: 100% !important
                         }
-
+    
                         .r7-i {
                             padding-left: 0px !important;
                             padding-right: 0px !important
                         }
-
+    
                         .r8-i {
                             padding-bottom: 20px !important;
                             padding-left: 15px !important;
                             padding-right: 15px !important;
                             padding-top: 20px !important
                         }
-
+    
                         .r9-c {
                             box-sizing: border-box !important;
                             text-align: left !important;
                             valign: top !important;
                             width: 100% !important
                         }
-
+    
                         .r10-o {
                             border-style: solid !important;
                             margin: 0 auto 0 0 !important;
                             width: 100% !important
                         }
-
+    
                         .r11-i {
                             padding-top: 15px !important;
                             text-align: center !important
                         }
-
+    
                         .r12-o {
                             border-bottom-width: 0px !important;
                             border-left-width: 0px !important;
@@ -224,7 +219,7 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                             margin-top: 0px !important;
                             width: 100% !important
                         }
-
+    
                         .r13-i {
                             background-color: #f9423a !important;
                             padding-bottom: 8px !important;
@@ -233,14 +228,14 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                             padding-top: 0px !important;
                             text-align: center !important
                         }
-
+    
                         .r14-o {
                             border-style: solid !important;
                             margin: 0 auto 0 0 !important;
                             margin-top: 2px !important;
                             width: 100% !important
                         }
-
+    
                         .r15-i {
                             padding-bottom: 5px !important;
                             padding-left: 0px !important;
@@ -248,14 +243,14 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                             padding-top: 5px !important;
                             text-align: center !important
                         }
-
+    
                         .r16-o {
                             background-size: cover !important;
                             border-style: solid !important;
                             margin: 0 auto 0 auto !important;
                             width: 100% !important
                         }
-
+    
                         .r17-o {
                             border-style: solid !important;
                             margin: 0 auto 0 0 !important;
@@ -263,14 +258,14 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                             margin-top: 0px !important;
                             width: 100% !important
                         }
-
+    
                         .r18-i {
                             background-color: #f9423a !important;
                             padding-bottom: 8px !important;
                             padding-top: 8px !important;
                             text-align: center !important
                         }
-
+    
                         .r19-i {
                             padding-bottom: 15px !important;
                             padding-left: 0px !important;
@@ -278,59 +273,59 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                             padding-top: 5px !important;
                             text-align: left !important
                         }
-
+    
                         .r20-c {
                             box-sizing: border-box !important;
                             text-align: center !important;
                             valign: top !important;
                             width: 320px !important
                         }
-
+    
                         .r21-i {
                             color: #3b3f44 !important;
                             padding-bottom: 0px !important;
                             padding-top: 15px !important;
                             text-align: center !important
                         }
-
+    
                         .r22-c {
                             box-sizing: border-box !important;
                             text-align: center !important;
                             width: 100% !important
                         }
-
+    
                         .r23-i {
                             padding-bottom: 15px !important;
                             padding-left: 0px !important;
                             padding-right: 0px !important;
                             padding-top: 0px !important
                         }
-
+    
                         .r24-c {
                             box-sizing: border-box !important;
                             text-align: center !important;
                             valign: top !important;
                             width: 129px !important
                         }
-
+    
                         .r25-o {
                             border-style: solid !important;
                             margin: 0 auto 0 auto !important;
                             width: 129px !important
                         }
-
+    
                         body {
                             -webkit-text-size-adjust: none
                         }
-
+    
                         .nl2go-responsive-hide {
                             display: none
                         }
-
+    
                         .nl2go-body-table {
                             min-width: unset !important
                         }
-
+    
                         .mobshow {
                             height: auto !important;
                             overflow: visible !important;
@@ -338,11 +333,11 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                             visibility: visible !important;
                             border: none !important
                         }
-
+    
                         .resp-table {
                             display: inline-table !important
                         }
-
+    
                         .magic-resp {
                             display: table-cell !important
                         }
@@ -358,13 +353,13 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                     ul {
                         margin: 0;
                     }
-
+    
                     a,
                     a:link {
                         color: #f9423a;
                         text-decoration: underline
                     }
-
+    
                     .nl2go-default-textstyle {
                         color: #3b3f44;
                         font-family: arial, helvetica, sans-serif;
@@ -372,7 +367,7 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                         line-height: 1.5;
                         word-break: break-word
                     }
-
+    
                     .default-button {
                         color: #ffffff;
                         font-family: arial, helvetica, sans-serif;
@@ -383,35 +378,35 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                         text-decoration: none;
                         word-break: break-word
                     }
-
+    
                     .default-heading1 {
                         color: #1F2D3D;
                         font-family: arial, helvetica, sans-serif;
                         font-size: 36px;
                         word-break: break-word
                     }
-
+    
                     .default-heading2 {
                         color: #1F2D3D;
                         font-family: arial, helvetica, sans-serif;
                         font-size: 32px;
                         word-break: break-word
                     }
-
+    
                     .default-heading3 {
                         color: #1F2D3D;
                         font-family: arial, helvetica, sans-serif;
                         font-size: 24px;
                         word-break: break-word
                     }
-
+    
                     .default-heading4 {
                         color: #1F2D3D;
                         font-family: arial, helvetica, sans-serif;
                         font-size: 18px;
                         word-break: break-word
                     }
-
+    
                     a[x-apple-data-detectors] {
                         color: inherit !important;
                         text-decoration: inherit !important;
@@ -420,7 +415,7 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                         font-weight: inherit !important;
                         line-height: inherit !important;
                     }
-
+    
                     .no-show-for-you {
                         border: none;
                         display: none;
@@ -444,7 +439,7 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                     }
                 </style>
                 </head>
-
+    
                 <body bgcolor="#ffffff" text="#3b3f44" link="#f9423a" yahoo="fix" style="background-color: #ffffff;">
                 <table cellspacing="0" cellpadding="0" border="0" role="presentation" class="nl2go-body-table" width="100%"
                     style="background-color: #ffffff; width: 100%;">
@@ -802,24 +797,25 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
                     </tr>
                 </table>
                 </body>
-
+    
                 </html>
-            `,
+                `,
             attachments: [
                 {
-                  filename: attachment.originalname, // Nome do arquivo no e-mail
-                  content: attachment.buffer,        // Conteúdo do arquivo (Buffer)
+                    filename: attachment.originalname,
+                    content: attachment.buffer,
                 },
-              ],
+            ],
         };
 
-        const info = await transporter.sendMail(mailOptions);
-
-        // res.status(200).json({ message: 'E-mail enviado com sucesso!', info: info });
-    } catch (error) {
-        // console.error('Erro ao enviar e-mail:', error);
-        // res.status(500).json({ error: 'Erro ao enviar e-mail.' });
-    }
+            const info = await transporter.sendMail(mailOptions);
+            res.status(200).json({ captchaSucess: true, info: info })
+        } else {
+            console.error('Erro durante o processamento - reCAPTCHA falhou:', data['error-codes']); // Corrigir aqui
+            res.status(500).json({ captchaSucess: false, error: 'Erro durante o processamento.' });
+        }
+    })
 });
+
 
 module.exports = router;

@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/assets/css/plugins.css"/>
     <link rel="stylesheet" href="/assets/css/style.css" />
 
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 <body class="v-light bg-dots dsn-ajax">
@@ -24,10 +26,10 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: var(--red-color);">
-                    <h6 class="modal-title" id="staticBackdropLabel2" style="color: #FFF;">Erro ao anexar o arquivo!</h6> 
+                    <h6 class="modal-title" id="staticBackdropLabel2" data-lang="tra-erro-anexar" style="color: #FFF;">Erro ao anexar o arquivo!</h6> 
                 </div>
                 <div class="modal-body">
-                    <p>Por favor, selecione um arquivo do tipo .doc, .docx ou .pdf.</p>
+                    <p data-lang="tra-selecione-arquivo">Por favor, selecione um arquivo do tipo .doc, .docx ou .pdf.</p>
                 </div>
             </div>
         </div>
@@ -35,7 +37,7 @@
     <!-- MODAL -->
 
    <!-- ========== Loading ========== -->
-   <!-- <div id="dsn_preloader" class="preloader">
+   <div id="dsn_preloader" class="preloader">
        <div class="dsnload p-absolute">
            <span class="dsnload__row">
                <span class="dsnload__img">
@@ -87,7 +89,7 @@
            </svg>
        </div>
 
-   </div> -->
+   </div>
    <!-- ========== End Loading ========== -->
 
 <main id="main_root" class="main-root">
@@ -666,11 +668,11 @@
                   <div class="intro-title ">
 
                      <div id="hero_title" class="mt-20">
-                        <h1 class="title text-upper">
+                        <h1 class="title text-upper" data-lang="tra-venha-fazer">
                            VENHA FAZER PARTE DA<br> NOSSA EQUIPE.
                         </h1>
                      </div>
-                     <p class="mt-20 max-w570">
+                     <p class="mt-20 max-w570" data-lang="tra-faça-parte">
                         Faça parte do nosso time de talentos! Estamos em busca de profissionais dedicados e apaixonados. Junte-se a nós e faça a diferença em sua carreira.
                      </p>
                   </div>
@@ -688,20 +690,20 @@
             <div class="dsn-mask p-absolute w-70 left-0 top-0 h-100 background-section"></div>
             <div class="p-relative container d-grid grid-1-half" style="gap: 30px 60px; --grid-gap: 30px 60px;">
                <div class="box-form">
-                  <h2 class="title-h2 ">
+                  <h2 class="title-h2" data-lang="tra-preencha">
                      PREENCHA O FORMULÁRIO ABAIXO <br>E ENVIE SEU CURRÍCULO
                   </h2>
-                  <p class="mt-10">Preencha todos os campos abaixo</p>
+                  <p class="mt-10" data-lang="tra-todos-campos">Preencha todos os campos abaixo</p>
 
                   <div class="dsn-form mt-20 form-box d-flex flex-column">
-                    <form id="contact-form" action="/api/send-email" method="post" data-toggle="validator" novalidate="true">
+                    <form id="contact-form" method="POST" data-toggle="validator" novalidate="true">
                         <div class="messages"></div>
                         <div class="input__wrap controls">
 
                            <div class="d-grid grid-md-2" style="gap: 0px 30px; --grid-gap: 0px 30px;">
                               <div class="form-group" style="translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px); will-change: auto;">
                                  <div class="entry-box">
-                                    <input id="form_name" class="form-control" type="text" name="name" placeholder="Escreve seu nome completo" required="required" data-error="Preencha seu nome!">
+                                    <input id="form_name" class="form-control" data-lang="form_tra_name" type="text" name="name" placeholder="Escreve seu nome completo" required="required" data-error="Preencha seu nome!" style="text-transform: capitalize;">
                                  </div>
                                  <div class="help-block with-errors"></div>
                               </div>
@@ -709,7 +711,7 @@
                               <div class="form-group"
                                  style="translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px); will-change: auto;">
                                  <div class="entry-box">
-                                    <input id="form_email" class="form-control" type="email" name="email" placeholder="Escreva seu email" required="required" data-error="Email Inválido!">
+                                    <input id="form_email" class="form-control" type="email" name="email" data-lang="form_tra_email" placeholder="Escreva seu email" required="required" data-error="Email Inválido!">
                                  </div>
                                  <div class="help-block with-errors"></div>
                               </div>
@@ -718,24 +720,27 @@
 
                            <div class="form-group" style="translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px); will-change: auto;">
                               <div class="entry-box">
-                                 <textarea id="form_message" class="form-control" name="message" rows="7" placeholder="Conte-nos um pouco sobre você" required="required" data-error="Por favor, escreva uma mensagem!" style="resize: none;"></textarea>
+                                 <textarea id="form_message" class="form-control" name="message" rows="7" placeholder="Conte-nos um pouco sobre você" required="required" data-lang="form_tra_sobre_voce" data-error="Por favor, escreva uma mensagem!" style="resize: none;"></textarea>
                               </div>
                               <div class="help-block with-errors"></div>
                            </div>
 
                            <div class="form-group" style="translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px); will-change: auto;">
-                              <div class="entry-box">
-                                  <input id="form_file" class="form-control" type="file" name="file" placeholder="Anexe seu currículo" required="required" data-error="Necessário anexar o currículo!" accept=".doc, .docx, .pdf" onchange="validateFile()">
-                              </div>
-                              <div class="help-block with-errors"></div>
+                                <div class="entry-box">
+                                    <label style="display: inline-block; padding: 10px; border: 1px solid #ccc; cursor: pointer;">
+                                        <span style="font-weight: 400;" data-lang="tra-anexe">Anexe seu currículo</span>
+                                        <input id="form_file" class="form-control" type="file" name="file" required="required" data-error="Necessário anexar o currículo!" accept=".doc, .docx, .pdf" style="position: absolute; left: -9999px;" onchange="showFileName(); validateFile();">
+                                    </label>
+                                    <p id="file-name-display" style="margin-top: 10px;"></p>
+                                </div>
+                                <div class="help-block with-errors"></div>
                           </div>
                           
                           <div class="g-recaptcha" data-sitekey="6LcfQUApAAAAADjxWL9N-aZw_4rTPcmhkSI2AXb1"></div>
-                          <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
-                            <div class="d-flex" style="translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px); will-change: auto;">
-                                <div class="image-zoom move-circle border-color-default border-style border-rdu dsn-parallax-hover">
-                                    <input type="submit" value="Envie sua mensagem" class="disabled form-control">
+                            <div class="d-flex" style="translate: none; rotate: none; scale: none; opacity: 1; visibility: inherit; transform: translate(0px, 0px); will-change: auto; margin-top: 30px; ">
+                                <div class="image-zoom move-circle border-color-default border-style border-rdu dsn-parallax-hover" style="border-color: var(--border-color) !important;">
+                                    <input type="submit" id="submit-button" data-lang="tra-enviar" value="Envie sua mensagem" class="disabled form-control" onmouseover="this.style.backgroundColor='#FFF';" onmouseout="this.style.backgroundColor='transparent';">
                                     <div class="icon-circle"></div>
                                 </div>
                             </div>
@@ -756,7 +761,7 @@
                                     </svg>
                              </div>
                                <div class="service-content p-relative">
-                                  <h4 class="service_title  sm-title-block" style="color: #FFF !important;">Endereço Matriz:</h4>
+                                  <h4 class="service_title  sm-title-block" data-lang="tra-end-matriz" style="color: #FFF !important;">Endereço Matriz:</h4>
                                   <div class="service_description mt-10 max-w570 dsn-auto">
                                     <p style="color: #FFF !important;">R. Dr. Pedro Ferreira, 333 Centro - Itajaí </p>
                                     <p style="color: #FFF !important;">Santa Catarina | Brasil</p>
@@ -773,7 +778,7 @@
                                   </svg>
                             </div>
                               <div class="service-content p-relative">
-                                 <h4 class="service_title  sm-title-block" style="color: #FFF !important;">Telefone:</h4>
+                                 <h4 class="service_title  sm-title-block" data-lang="tra-telefone" style="color: #FFF !important;">Telefone:</h4>
                                  <div class="service_description mt-10 max-w570 dsn-auto">
                                     <p style="color: #FFF !important;">+55 47 3311-4800</p>
                                  </div>
@@ -789,7 +794,7 @@
                                 </svg>
                             </div>
                               <div class="service-content p-relative">
-                                 <h4 class="service_title  sm-title-block" style="color: #FFF !important;">Escreva-nos</h4>
+                                 <h4 class="service_title  sm-title-block" data-lang="tra-escreva-nos" style="color: #FFF !important;">Escreva-nos</h4>
                                  <div class="service_description mt-10 max-w570 dsn-auto">
                                     <p style="color: #FFF !important;">rh@conlinebr.com.br</p>
                                  </div>
@@ -890,7 +895,7 @@
                                      <a href="privacidade" class="effect-ajax" data-lang="politica">POLÍTICA DE PRIVACIDADE</a>
                                  </li>
                                  <li class="menu-item">
-                                     <a href="#inicioPagina" class="effect-ajax" data-lang="politica">TRABALHE CONOSCO</a>
+                                     <a href="#inicioPagina" class="effect-ajax" data-lang="trabalhe-conosco">TRABALHE CONOSCO</a>
                                  </li>
                              </ul>
                          </div>
@@ -1141,95 +1146,75 @@
     <script src="/assets/js/custom.js"></script>
     <script src="/assets/js/modal-cookies.js"></script>
     <script src="/assets/js/languages.js"></script>
+    <!-- Mostrar nome do arquivo anexado -->
+    <script>
+        function showFileName() {
+            const fileInput = document.getElementById('form_file');
+            const fileNameDisplay = document.getElementById('file-name-display');
+
+            // Verifica se algum arquivo foi selecionado
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                fileNameDisplay.textContent = '' + fileName;
+            } else {
+                // Se nenhum arquivo foi selecionado, limpa o conteúdo
+                fileNameDisplay.textContent = '';
+            }
+        }
+    </script>
+
+    <script>
+        const form = document.querySelector('#contact-form');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const form_name = document.getElementById('form_name');
+            const form_email = document.getElementById('form_email');
+            const form_message = document.getElementById('form_message');
+            const form_file = document.getElementById('form_file');
+            const fileNameDisplay = document.getElementById('file-name-display');
+
+            const captchaResponse = grecaptcha.getResponse();
+
+            if (!captchaResponse.length > 0) {
+                console.error('Captcha não realizado!');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('name', document.getElementById('form_name').value);
+            formData.append('email', document.getElementById('form_email').value);
+            formData.append('message', document.getElementById('form_message').value);
+            formData.append('file', document.getElementById('form_file').files[0]);
+            formData.append('g-recaptcha-response', captchaResponse);
+
+            fetch('/api/send-email', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.captchaSucess) {
+                    form_name.value = '';
+                    form_email.value = '';
+                    form_message.value = '';
+                    form_file.value = '';
+                    fileNameDisplay.textContent = '';
+                    console.log('Email Enviado');
+                } else {
+                    console.log('Erro ao enviar o email');
+                }
+            })
+            .catch(err => console.error(err));
+        });
+
+    </script>
+
     <script src="/assets/js/validate-file.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const contactForm = document.getElementById("contact-form");
-      
-          contactForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-      
-            // Execute a função para validar o captcha
-            validateCaptcha();
-          });
-        });
-      
-        function validateCaptcha() {
-            // Obtenha o valor da resposta do reCAPTCHA
-            const captchaResponse = document.getElementById("g-recaptcha-response").value;
-
-            // Faça uma requisição POST para o backend para validar o captcha
-            fetch("/api/validate-captcha", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ captchaResponse }),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                if (data.success) {
-                    // Se o captcha for validado, prossiga com o envio do formulário
-                    submitForm();
-                }
-                })
-                .catch((error) => {
-                console.error("Erro ao validar o captcha:", error);
-                });
-        }
-
-        // Função para enviar o formulário após a validação do captcha
-        function submitForm() {
-            const contactForm = document.getElementById("contact-form");
-            const formData = new FormData(contactForm);
-
-            // Faça uma requisição POST para a rota /send-email
-            fetch("/api/send-email", {
-                method: "POST",
-                body: formData,
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                console.log(data);
-                // Adicione aqui a lógica para manipular a resposta do servidor, se necessário
-                })
-                .catch((error) => {
-                console.error("Erro ao enviar formulário:", error);
-                // Adicione aqui a lógica para lidar com erros na requisição
-                });
-        }
-    </script>
-      
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-
-    <!-- Usando metodo POST para enviar os dados para o servidor -->
-    <script>
-    document.getElementById('contact-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const form = event.target;
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Resposta do servidor:', data);
-            // Adicione aqui qualquer lógica adicional após o envio bem-sucedido
-        })
-        .catch(error => {
-            console.error('Erro ao enviar a solicitação:', error);
-            // Adicione aqui qualquer lógica para lidar com erros
-        });
-    });
-    </script>
-
-    <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
 </body>

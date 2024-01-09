@@ -37,6 +37,7 @@
       "navegacao": "NAVIGATION",
       "inicio": "HOME",
       "politica": "PRIVACY POLICY",
+      "trabalhe-conosco": "JOIN US",
       "contato-2": "CONTACT",
       "copyright": "Copyright © ConLine | All rights reserved | 2024",
       "endereco-2": "ADDRESS",
@@ -79,6 +80,22 @@
       "pri-politica": "PRIVACY POLICY",
       "pri-contato-2": "CONTACT",
       "pri-copyright": "Copyright © ConLine | All rights reserved | 2024",
-      "pri-endereco-2": "ADDRESS"
+      "pri-endereco-2": "ADDRESS",
+
+      "tra-title": "Join Us",
+      "tra-erro-anexar": "Error attaching the file!",
+      "tra-selecione-arquivo": "Please select a file of type .doc, .docx, or .pdf.",
+      "tra-venha-fazer": "COME BE PART OF THE<br>TEAM.",
+      "tra-faça-parte": "Join our team of talents! We are looking for dedicated and passionate professionals. Join us and make a difference in your career.",
+      "tra-preencha": "FILL OUT THE FORM BELOW<br>AND SUBMIT YOUR RESUME",
+      "tra-todos-campos": "Fill out all the fields below.",
+      "form_tra_name": "Write your full name",
+      "form_tra_email": "Write your email",
+      "form_tra_sobre_voce": "Tell us a bit about yourself",
+      "tra-anexe": "Attach your resume",
+      "tra-enviar": "SEND YOUR MESSAGE",
+      "tra-end-matriz": "ADDRESS HEADQUARTERS",
+      "tra-telefone": "PHONE",
+      "tra-escreva-nos": "WRITE US"
    }
 }
