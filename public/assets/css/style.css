@@ -195,6 +195,10 @@ body:not(.dsn-cursor-effect) #dsn_cursor, body:not(.dsn-cursor-effect) #dsn_curs
   cursor: pointer;
 }
 
+#solid-toast {
+  animation: opacity 10s;
+}
+
 @keyframes jumping {
   0% {
     bottom: 10px;
@@ -204,6 +208,24 @@ body:not(.dsn-cursor-effect) #dsn_cursor, body:not(.dsn-cursor-effect) #dsn_curs
   }
   100% {
     bottom: 10px;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 

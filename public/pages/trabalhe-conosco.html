@@ -36,6 +36,10 @@
     </div>
     <!-- MODAL -->
 
+    <!-- TOASTS -->
+    <div class="toast-container position-fixed end-0 p-3" style="top: 50px;"></div>
+    <!-- TOASTS -->
+
    <!-- ========== Loading ========== -->
    <div id="dsn_preloader" class="preloader">
        <div class="dsnload p-absolute">
@@ -669,7 +673,7 @@
 
                      <div id="hero_title" class="mt-20">
                         <h1 class="title text-upper" data-lang="tra-venha-fazer">
-                           VENHA FAZER PARTE DA<br> NOSSA EQUIPE.
+                           VENHA FAZER PARTE DA<br> NOSSA EQUIPE
                         </h1>
                      </div>
                      <p class="mt-20 max-w570" data-lang="tra-faça-parte">
@@ -1146,6 +1150,8 @@
     <script src="/assets/js/custom.js"></script>
     <script src="/assets/js/modal-cookies.js"></script>
     <script src="/assets/js/languages.js"></script>
+    <script src="/assets/js/toasts.js"></script>
+
     <!-- Mostrar nome do arquivo anexado -->
     <script>
         function showFileName() {
@@ -1163,7 +1169,41 @@
         }
     </script>
 
+    <!-- Envia o formulario -->
     <script>
+        function show_toasts(titulo, corpo, cor) {
+            const toast_container = document.querySelector('.toast-container');
+            const maxToasts = 5; // Defina o número máximo de toasts a serem exibidos
+
+            const adicionar_toasts = `<div class="toast colored-toast text-fixed-white fade show" role="alert"
+                                            aria-live="assertive" aria-atomic="true" style="background-color: ${cor};">
+                                            <div class="toast-header text-fixed-white" style="background-color: ${cor};"> 
+                                                <img class="bd-placeholder-img rounded me-2" src="/assets/img/icon-redondo.png" alt="..." style="width: 28px;"> 
+                                                <strong class="me-auto" style="color: #000;">${titulo}</strong> 
+                                            </div>
+                                            <div class="toast-body" style="color: #000;">${corpo}</div>
+                                        </div>`;
+
+            // Adiciona a nova div no início da div container
+            toast_container.insertAdjacentHTML('afterbegin', adicionar_toasts);
+
+            // Remove os toasts mais antigos além do número máximo definido
+            const toasts = toast_container.querySelectorAll('.toast');
+            if (toasts.length > maxToasts) {
+                for (let i = maxToasts; i < toasts.length; i++) {
+                    toasts[i].remove();
+                }
+            }
+
+            // Adiciona um setTimeout para remover automaticamente após o tempo especificado
+            setTimeout(() => {
+                const newToasts = toast_container.querySelectorAll('.toast');
+                if (newToasts.length > 0) {
+                    newToasts[newToasts.length - 1].remove();
+                }
+            }, 10000);
+        }
+
         const form = document.querySelector('#contact-form');
 
         form.addEventListener('submit', function(e) {
@@ -1174,12 +1214,21 @@
             const form_message = document.getElementById('form_message');
             const form_file = document.getElementById('form_file');
             const fileNameDisplay = document.getElementById('file-name-display');
+            const solid_success = document.getElementById('solid-success');
 
             const captchaResponse = grecaptcha.getResponse();
 
             if (!captchaResponse.length > 0) {
-                console.error('Captcha não realizado!');
-                return;
+                show_toasts('Error!', 'Captcha Invalido!', '#F9423A85')
+                return false;
+            }
+
+            if(!form_file.files[0] || form_file.files[0].size == 0) {
+                return false;
+            }
+
+            if(form_name.value.trim() == '' || form_email.value.trim() == '' || form_message.value.trim() == '') {
+                return false;
             }
 
             const formData = new FormData();
@@ -1201,14 +1250,14 @@
                     form_message.value = '';
                     form_file.value = '';
                     fileNameDisplay.textContent = '';
-                    console.log('Email Enviado');
+
+                    show_toasts('Conline em movimento!', 'Seu e-mail foi com sucesso, assim que possivel estaremos entrando em contato', '#0d852d85')
                 } else {
-                    console.log('Erro ao enviar o email');
+                    show_toasts('Conline em movimento!', 'Erro ao enviar o email, por favor, verifique os campos do formulário!', '#F9423A85')
                 }
             })
             .catch(err => console.error(err));
         });
-
     </script>
 
     <script src="/assets/js/validate-file.js"></script>
