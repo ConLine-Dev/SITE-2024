@@ -25,7 +25,7 @@ app.use('/api', api);
 const server = http.createServer(app);
 
 // connection
-const port = process.env.PORT || 9001;
+const port = process.env.PORT || 5004;
 server.listen(port, () =>
   console.log(`Listening to port http://localhost:${port} Node.js v${process.versions.node}!`)
 );
