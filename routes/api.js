@@ -817,6 +817,7 @@ router.post('/send-email', upload.single('file'), async (req, res) => {
             }
         })
     } catch (error) {
+        console.log(error)
         res.status(404).json({ error: 'Erro durante o processamento.' });
     }
     
