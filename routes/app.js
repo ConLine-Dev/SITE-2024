@@ -4,6 +4,19 @@ const path = require("path");
 const fs = require('fs');
 // const { executeQuery } = require('../connect/mysql');
 
+
+router.get('/logosirius_preta.png', async (req, res, next) => {
+    // Se a rota raiz for acessada, carregue a página home
+
+    const pagePath = path.join(__dirname, '../', 'public/logosirius_preta.png');
+
+    if (fs.existsSync(pagePath)) {
+        res.sendFile(pagePath);
+    } else {
+        res.status(404).send('Página não encontrada');
+    }
+});
+
 router.get('/', async (req, res, next) => {
     // Se a rota raiz for acessada, carregue a página home
     const pagePath = path.join(__dirname, '../', 'public/pages/inicio.html');
