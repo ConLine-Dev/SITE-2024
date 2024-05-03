@@ -1,0 +1,14 @@
+#submit-button {
+   padding: 20px 40px;
+   color: #FFF;
+   background-color: var(--red-color);
+}
+
+#submit-button:hover{
+   background-color: var(--red-color-hover);
+}
+
+#btn-loading {
+   color: #FFF;
+   padding: 20px 56px;
+}
