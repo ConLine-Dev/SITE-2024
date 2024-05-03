@@ -3,6 +3,7 @@
 :root, :root .v-light, :root .v-light-head {
   --bg-color: #f9f9f9;
   --red-color: #F9423A;
+  --red-color-hover: #df170c;
   --assistant-color: #efefef;
   --theme-color: #cec4b9;
   --theme-color-font: #fff;
