@@ -2,10 +2,11 @@
    "en": {
       "titulo": "Conline - International Logistics Services",
       "menu": "MENU",
-      "endereco-matriz-1": "<h5 class='sm-title-block mb-10'>Address - Headquarters</h5>R. Dr. Pedro Ferreira, 333, Centro, Itajaí - SC",
-      "endereco-matriz-2": "<h5 class='sm-title-block mb-10' style='font-weight: bold;'>Address - Headquarters</h5>R. Dr. Pedro Ferreira, 333<br> Centro - Itajaí <br> Santa Catarina <br> Brasil",
+      "endereco-matriz-1": "<h5 class='sm-title-block mb-10'>Address - Headquarters</h5>R. Dr. Pedro Ferreira, 333, 27° Andar, Sala 2701, Centro, Itajaí - SC",
+      "endereco-matriz-2": "<h5 class='sm-title-block mb-10' style='font-weight: bold;'>Address - Headquarters</h5>R. Dr. Pedro Ferreira, 333, 27° Andar, Sala 2701<br> Centro - Itajaí <br> Santa Catarina <br> Brasil",
       "endereco-filial-1": "<h5 class='sm-title-block mb-10'>Address - São Paulo Branch</h5>Av Paulista 2300, Pilotis, Sala 40, Bela Vista, São Paulo - SP 01310-300",
       "endereco-filial-2": "<h5 class='sm-title-block mb-10' style='font-weight: bold;'>Address - São Paulo Branch</h5>Av Paulista 2300, Pilotis, Sala 40, <br> Bela Vista - São Paulo - SP<br> 01310-300",
+      "dados-empresa": "<p class='sm-title-block mb-10' style='font-weight: bold; color: #000;'>Company data</p><strong>Fantasy Name:</strong>CONLINE SERVICOS DE LOGISTICA INTERNACIONAL<br><strong>Corporate Reason:</strong>MARCONE VIDAL SERVICOS DE LOGISTICA LTDA<br><strong> CNPJ: </strong> 25.408.353/0001-56",
       "contato": "Contact",
       "siga": "Follow us",
       "proximos": "CLOSER",
